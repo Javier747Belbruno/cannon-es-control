@@ -1,18 +1,20 @@
 {
-  "name": "cannon-es",
-  "version": "0.17.1",
+  "name": "cannon-es-control",
+  "version": "0.0.1",
   "license": "MIT",
-  "description": "A lightweight 3D physics engine written in JavaScript.",
+  "description": "A lightweight 3D physics engine written in JavaScript with control system tools",
   "homepage": "https://github.com/schteppe/cannon.js",
   "author": "Stefan Hedman <schteppe@gmail.com> (http://steffe.se)",
   "contributors": [
     "Cody Persinger <codypersinger@gmail.com> (https://github.com/codynova)",
-    "Marco Fugaro <marco.fugaro@gmail.com> (https://github.com/marcofugaro)"
+    "Marco Fugaro <marco.fugaro@gmail.com> (https://github.com/marcofugaro)",
+    "Javier Belbruno <javierbelbruno@gmail.com> (https://github.com/javier747belbruno)"
   ],
   "keywords": [
     "cannon.js",
     "cannon",
     "physics",
+    "control",
     "engine",
     "3d"
   ],
@@ -22,7 +24,7 @@
   "types": "./dist/cannon-es.d.ts",
   "sideEffects": false,
   "scripts": {
-    "start": "npx serve",
+    "start": "npx serve -l 7477",
     "prebuild": "rimraf dist",
     "build": "npm run typegen && rollup -c",
     "prepublishOnly": "npm run build && npm run test",
@@ -38,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pmndrs/cannon-es.git"
+    "url": "git+https://github.com/Javier747Belbruno/cannon-es-control.git"
   },
   "bugs": {
     "url": "https://github.com/schteppe/cannon.js/issues"
@@ -64,6 +66,13 @@
     "rollup-plugin-filesize": "^9.1.1",
     "ts-jest": "^26.5.4",
     "typedoc": "0.20.30",
-    "typescript": "^4.2.4"
-  }
+    "typescript": "^4.2.4",
+    "serve": "latest"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples",
+    "test": "test"
+  },
+  "dependencies": {}
 }

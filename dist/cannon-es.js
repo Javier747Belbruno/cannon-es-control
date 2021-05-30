@@ -32,7 +32,7 @@ class ObjectCollisionMatrix {
       i = temp;
     }
 
-    return i + "-" + j in this.matrix;
+    return `${i}-${j}` in this.matrix;
   }
   /**
    * set
@@ -54,9 +54,9 @@ class ObjectCollisionMatrix {
     }
 
     if (value) {
-      this.matrix[i + "-" + j] = true;
+      this.matrix[`${i}-${j}`] = true;
     } else {
-      delete this.matrix[i + "-" + j];
+      delete this.matrix[`${i}-${j}`];
     }
   }
   /**
@@ -314,7 +314,7 @@ class Mat3 {
     target.x = (eqns[0 * nc + 3] - eqns[0 * nc + 2] * target.z - eqns[0 * nc + 1] * target.y) / eqns[0 * nc + 0];
 
     if (isNaN(target.x) || isNaN(target.y) || isNaN(target.z) || target.x === Infinity || target.y === Infinity || target.z === Infinity) {
-      throw "Could not solve equation! Got x=[" + target.toString() + "], b=[" + b.toString() + "], A=[" + this.toString() + "]";
+      throw `Could not solve equation! Got x=[${target.toString()}], b=[${b.toString()}], A=[${this.toString()}]`;
     }
 
     return target;
@@ -473,7 +473,7 @@ class Mat3 {
         p = eqns[nr + j + nc * i];
 
         if (isNaN(p) || p === Infinity) {
-          throw "Could not reverse! A=[" + this.toString() + "]";
+          throw `Could not reverse! A=[${this.toString()}]`;
         }
 
         target.e(i, j, p);
@@ -640,7 +640,7 @@ class Vec3 {
   }
   /**
    * Normalize the vector. Note that this changes the values in the vector.
-    * @return Returns the norm of the vector
+     * @return Returns the norm of the vector
    */
 
 
@@ -838,7 +838,7 @@ class Vec3 {
 
 
   toString() {
-    return this.x + "," + this.y + "," + this.z;
+    return `${this.x},${this.y},${this.z}`;
   }
   /**
    * Converts to an array
@@ -1435,7 +1435,7 @@ class Quaternion {
 
 
   toString() {
-    return this.x + "," + this.y + "," + this.z + "," + this.w;
+    return `${this.x},${this.y},${this.z},${this.w}`;
   }
   /**
    * Convert to an Array
@@ -1689,7 +1689,7 @@ class Quaternion {
         break;
 
       default:
-        throw new Error("Euler order " + order + " not supported yet.");
+        throw new Error(`Euler order ${order} not supported yet.`);
     }
 
     target.y = heading;
@@ -1930,7 +1930,7 @@ class Shape {
 
 
   updateBoundingSphereRadius() {
-    throw "computeBoundingSphereRadius() not implemented for shape type " + this.type;
+    throw `computeBoundingSphereRadius() not implemented for shape type ${this.type}`;
   }
   /**
    * Get the volume of this shape
@@ -1938,7 +1938,7 @@ class Shape {
 
 
   volume() {
-    throw "volume() not implemented for shape type " + this.type;
+    throw `volume() not implemented for shape type ${this.type}`;
   }
   /**
    * Calculates the inertia in the local frame for this shape.
@@ -1947,7 +1947,7 @@ class Shape {
 
 
   calculateLocalInertia(mass, target) {
-    throw "calculateLocalInertia() not implemented for shape type " + this.type;
+    throw `calculateLocalInertia() not implemented for shape type ${this.type}`;
   }
   /**
    * @todo use abstract for these kind of methods
@@ -1955,7 +1955,7 @@ class Shape {
 
 
   calculateWorldAABB(pos, quat, min, max) {
-    throw "calculateWorldAABB() not implemented for shape type " + this.type;
+    throw `calculateWorldAABB() not implemented for shape type ${this.type}`;
   }
 
 }
@@ -2193,7 +2193,7 @@ class ConvexPolyhedron extends Shape {
       // Check so all vertices exists for this face
       for (let j = 0; j < this.faces[i].length; j++) {
         if (!this.vertices[this.faces[i][j]]) {
-          throw new Error("Vertex " + this.faces[i][j] + " not found!");
+          throw new Error(`Vertex ${this.faces[i][j]} not found!`);
         }
       }
 
@@ -2204,10 +2204,10 @@ class ConvexPolyhedron extends Shape {
       const vertex = this.vertices[this.faces[i][0]];
 
       if (n.dot(vertex) < 0) {
-        console.error(".faceNormals[" + i + "] = Vec3(" + n.toString() + ") looks like it points into the shape? The vertices follow. Make sure they are ordered CCW around the normal, using the right hand rule.");
+        console.error(`.faceNormals[${i}] = Vec3(${n.toString()}) looks like it points into the shape? The vertices follow. Make sure they are ordered CCW around the normal, using the right hand rule.`);
 
         for (let j = 0; j < this.faces[i].length; j++) {
-          console.warn(".vertices[" + this.faces[i][j] + "] = Vec3(" + this.vertices[this.faces[i][j]].toString() + ")");
+          console.warn(`.vertices[${this.faces[i][j]}] = Vec3(${this.vertices[this.faces[i][j]].toString()})`);
         }
       }
     }
@@ -2560,7 +2560,7 @@ class ConvexPolyhedron extends Shape {
       let depth = planeNormalWS.dot(pVtxIn[i]) + planeEqWS; // ???
 
       if (depth <= minDist) {
-        console.log("clamped: depth=" + depth + " to minDist=" + minDist);
+        console.log(`clamped: depth=${depth} to minDist=${minDist}`);
         depth = minDist;
       }
 
@@ -2914,6 +2914,7 @@ class ConvexPolyhedron extends Shape {
 }
 const maxminA = [];
 const maxminB = [];
+new Vec3();
 const project_localAxis = new Vec3();
 const project_localOrigin = new Vec3();
 
@@ -4011,6 +4012,7 @@ const tmpQuat = new Quaternion();
 const updateAABB_shapeAABB = new AABB();
 const uiw_m1 = new Mat3();
 const uiw_m2 = new Mat3();
+new Mat3();
 const Body_applyForce_rotForce = new Vec3();
 const Body_applyLocalForce_worldForce = new Vec3();
 const Body_applyLocalForce_relativePointWorld = new Vec3();
@@ -4146,7 +4148,7 @@ class Broadphase {
     for (let i = 0; i !== N; i++) {
       const id1 = p1[i].id;
       const id2 = p2[i].id;
-      const key = id1 < id2 ? id1 + "," + id2 : id2 + "," + id1;
+      const key = id1 < id2 ? `${id1},${id2}` : `${id2},${id1}`;
       t[key] = i;
       t.keys.push(key);
     }
@@ -4191,11 +4193,15 @@ class Broadphase {
 } // Temp objects
 
 const Broadphase_collisionPairs_r = new Vec3();
+new Vec3();
+new Quaternion();
+new Vec3();
 const Broadphase_makePairsUnique_temp = {
   keys: []
 };
 const Broadphase_makePairsUnique_p1 = [];
 const Broadphase_makePairsUnique_p2 = [];
+new Vec3();
 
 /**
  * Axis aligned uniform grid broadphase.
@@ -4471,6 +4477,7 @@ class GridBroadphase extends Broadphase {
 
 }
 const GridBroadphase_collisionPairs_d = new Vec3();
+new Vec3();
 
 /**
  * Naive broadphase implementation, used in lack of better ones.
@@ -5309,6 +5316,8 @@ const intersectPoint = new Vec3();
 const a = new Vec3();
 const b = new Vec3();
 const c = new Vec3();
+new Vec3();
+new RaycastResult();
 const intersectConvexOptions = {
   faceList: [0]
 };
@@ -5318,6 +5327,8 @@ const intersectHeightfield_index = [];
 const Ray_intersectSphere_intersectionPoint = new Vec3();
 const Ray_intersectSphere_normal = new Vec3();
 const intersectConvex_normal = new Vec3();
+new Vec3();
+new Vec3();
 const intersectConvex_vector = new Vec3();
 const intersectTrimesh_normal = new Vec3();
 const intersectTrimesh_localDirection = new Vec3();
@@ -6361,6 +6372,8 @@ class ConeTwistConstraint extends PointToPointConstraint {
   }
 
 }
+new Vec3();
+new Vec3();
 
 /**
  * Constrains two bodies to be at a constant distance from each others center of mass.
@@ -6471,6 +6484,8 @@ class LockConstraint extends PointToPointConstraint {
   }
 
 }
+new Vec3();
+new Vec3();
 
 /**
  * Rotational motor constraint. Tries to keep the relative angular velocity of the bodies to a given value.
@@ -7771,10 +7786,14 @@ class RaycastVehicle {
   }
 
 }
+new Vec3();
+new Vec3();
+new Vec3();
 const tmpVec4 = new Vec3();
 const tmpVec5 = new Vec3();
 const tmpVec6 = new Vec3();
 new Ray();
+new Vec3();
 const castRay_rayvector = new Vec3();
 const castRay_target = new Vec3();
 const directions = [new Vec3(1, 0, 0), new Vec3(0, 1, 0), new Vec3(0, 0, 1)];
@@ -8877,7 +8896,7 @@ class Heightfield extends Shape {
   }
 
   getCacheConvexTrianglePillarKey(xi, yi, getUpperTriangle) {
-    return xi + "_" + yi + "_" + (getUpperTriangle ? 1 : 0);
+    return `${xi}_${yi}_${getUpperTriangle ? 1 : 0}`;
   }
 
   getCachedConvexTrianglePillar(xi, yi, getUpperTriangle) {
@@ -9538,7 +9557,7 @@ class Trimesh extends Shape {
     const edges = {};
 
     const add = (a, b) => {
-      const key = a < b ? a + "_" + b : b + "_" + a;
+      const key = a < b ? `${a}_${b}` : `${b}_${a}`;
       edges[key] = true;
     };
 
@@ -9748,7 +9767,7 @@ class Trimesh extends Shape {
         const n = this.vertices.length / 3,
             verts = this.vertices;
         const minx,miny,minz,maxx,maxy,maxz;
-         const v = tempWorldVertex;
+          const v = tempWorldVertex;
         for(let i=0; i<n; i++){
             this.getVertex(i, v);
             quat.vmult(v, v);
@@ -9758,12 +9777,12 @@ class Trimesh extends Shape {
             } else if(v.x > maxx || maxx===undefined){
                 maxx = v.x;
             }
-             if (v.y < miny || miny===undefined){
+              if (v.y < miny || miny===undefined){
                 miny = v.y;
             } else if(v.y > maxy || maxy===undefined){
                 maxy = v.y;
             }
-             if (v.z < minz || minz===undefined){
+              if (v.z < minz || minz===undefined){
                 minz = v.z;
             } else if(v.z > maxz || maxz===undefined){
                 maxz = v.z;
@@ -11888,6 +11907,7 @@ const planeTrimesh_relpos = new Vec3();
 const planeTrimesh_projected = new Vec3();
 const sphereTrimesh_normal = new Vec3();
 const sphereTrimesh_relpos = new Vec3();
+new Vec3();
 const sphereTrimesh_v = new Vec3();
 const sphereTrimesh_v2 = new Vec3();
 const sphereTrimesh_edgeVertexA = new Vec3();
@@ -11961,6 +11981,8 @@ const sphereConvex_worldPoint = new Vec3();
 const sphereConvex_worldSpherePointClosestToPlane = new Vec3();
 const sphereConvex_penetrationVec = new Vec3();
 const sphereConvex_sphereToWorldPoint = new Vec3();
+new Vec3();
+new Vec3();
 const planeConvex_v = new Vec3();
 const planeConvex_normal = new Vec3();
 const planeConvex_relpos = new Vec3();
@@ -11974,6 +11996,7 @@ const particleSphere_normal = new Vec3(); // WIP
 
 const cqj = new Quaternion();
 const convexParticle_local = new Vec3();
+new Vec3();
 const convexParticle_penetratedFaceNormal = new Vec3();
 const convexParticle_vertexToParticle = new Vec3();
 const convexParticle_worldPenetrationVec = new Vec3();
@@ -12113,7 +12136,7 @@ class TupleDictionary {
       i = temp;
     }
 
-    return this.data[i + "-" + j];
+    return this.data[`${i}-${j}`];
   }
   /** set */
 
@@ -12125,7 +12148,7 @@ class TupleDictionary {
       i = temp;
     }
 
-    const key = i + "-" + j; // Check if key already exists
+    const key = `${i}-${j}`; // Check if key already exists
 
     if (!this.get(i, j)) {
       this.data.keys.push(key);
@@ -13047,6 +13070,8 @@ if (!performance.now) {
 
   performance.now = () => Date.now() - nowOffset;
 }
+
+new Vec3(); // Dispatched after the world has stepped forward in time.
 // Reusable event objects to save memory.
 
 const World_step_postStepEvent = {
