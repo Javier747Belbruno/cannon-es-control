@@ -1,6 +1,6 @@
 {
   "name": "cannon-es-control",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "license": "MIT",
   "description": "A lightweight 3D physics engine written in JavaScript with control system tools",
   "homepage": "https://github.com/schteppe/cannon.js",
@@ -18,10 +18,10 @@
     "engine",
     "3d"
   ],
-  "main": "./dist/cannon-es.cjs.js",
-  "module": "./dist/cannon-es.js",
-  "react-native": "./dist/cannon-es.js",
-  "types": "./dist/cannon-es.d.ts",
+  "main": "./dist/cannon-es-control.cjs.js",
+  "module": "./dist/cannon-es-control.js",
+  "react-native": "./dist/cannon-es-control.js",
+  "types": "./dist/cannon-es-control.d.ts",
   "sideEffects": false,
   "scripts": {
     "start": "npx serve -l 7477",
@@ -29,7 +29,7 @@
     "build": "npm run typegen && rollup -c",
     "prepublishOnly": "npm run build && npm run test",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false --strict",
-    "typegen": "tsc --outFile dist/cannon-es.d.ts",
+    "typegen": "tsc --outFile dist/cannon-es-control.d.ts",
     "generate-docs": "typedoc && node ./scripts/inject-css-in-docs.mjs",
     "test": "jest"
   },

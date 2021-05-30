@@ -1,4 +1,4 @@
-import * as CANNON from '../../dist/cannon-es.js'
+import * as CANNON from '../../dist/cannon-es-control'
 
 /**
  * @author schteppe / https://github.com/schteppe

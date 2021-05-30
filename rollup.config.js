@@ -34,13 +34,13 @@ const babelOptions = {
 
 export default [
   {
-    input: `./src/cannon-es`,
-    output: { file: `dist/cannon-es.js`, format: 'esm' },
+    input: `./src/cannon-es-control`,
+    output: { file: `dist/cannon-es-control.js`, format: 'esm' },
     plugins: [json(), resolve({ extensions }), babel(babelOptions), filesize()],
   },
   {
-    input: `./src/cannon-es`,
-    output: { file: `dist/cannon-es.cjs.js`, format: 'cjs' },
+    input: `./src/cannon-es-control`,
+    output: { file: `dist/cannon-es-control.cjs.js`, format: 'cjs' },
     plugins: [
       json(),
       resolve({ extensions }),

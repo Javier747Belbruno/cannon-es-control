@@ -1,5 +1,5 @@
 {
-  "entryPoints": "./src/cannon-es.ts",
+  "entryPoints": "./src/cannon-es-control.ts",
   "out": "docs/",
   "readme": "./getting-started.md",
   "theme": "minimal",
